@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🤝 Forever Friends</title>
+    <!-- Removes the default browser/server logo -->
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    
+    <!-- Start Screen Overlay (To unlock browser audio playback) -->
+    <div id="start-screen" class="envelope-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fdfaf6; z-index: 10000; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; transition: opacity 0.5s ease;">
+        <div class="envelope-content" style="padding: 0 20px;">
+            <h1 style="font-family: var(--font-heading); color: var(--accent-purple); font-size: clamp(2.5rem, 8vw, 4rem); margin-bottom: 10px; line-height: 1.2;">A Special Message<br>for You...</h1>
+            <button id="start-btn" class="btn btn-pink" style="font-size: 1.2rem; padding: 12px 35px; margin-top: 20px; border: none; border-radius: 30px; cursor: pointer; background: #ff758c; color: white; box-shadow: 0 4px 15px rgba(255, 117, 140, 0.4); transition: transform 0.3s ease;">Open 😍</button>
+        </div>
+    </div>
+
+    <!-- Final Surprise Overlay -->
+    <div id="final-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--c-cream); z-index: 10000; flex-direction: column; justify-content: flex-start; align-items: center; color: #444; font-family: 'Nunito', sans-serif; font-weight: 600; padding: max(3rem, 10vh) 2rem 3rem 2rem; transition: opacity 0.8s ease; opacity: 0; overflow-y: auto;">
+        <div id="typing-container" style="max-width: 500px; width: 100%; font-size: 1.5rem; line-height: 1.8; text-align: left; margin: auto 0;">
+        </div>
+    </div>
+
+    <div id="loader">
+        <div class="loader-content" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh;">
+            
+            <div id="scanning-view" style="display: flex; flex-direction: column; align-items: center;">
+                <div class="scanner-container">
+                    <i class="fa-regular fa-heart scanner-heart"></i>
+                    <div class="scanner-line"></div>
+                </div>
+                <div id="scan-text" style="font-family: var(--font-body); font-size: 1.5rem; color: #555; letter-spacing: 1px;">
+                    Searching My Best Memories...<span class="dots"></span>
+                </div>
+            </div>
+            
+            <div id="match-found" style="display: none; text-align: center;">
+                <div id="match-icon" style="font-size: clamp(4rem, 10vw, 5rem); color: var(--accent-pink); margin-bottom: 1rem; opacity: 0; transform: scale(0); transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+                <h1 id="match-title" style="font-size: clamp(2.2rem, 8vw, 3rem); color: var(--accent-pink); margin-bottom: 0.8rem; font-family: var(--font-heading); opacity: 0; transform: translateY(20px); transition: all 0.6s ease; line-height: 1.2;">1 Precious Friend Found 💖✨</h1>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="app-container">
+
+        <!-- SCREEN 1: HOME -->
+        <section id="home" class="screen screen-cream">
+            <nav>
+                <div class="logo"><i class="fa-regular fa-heart highlight-pink"></i> Best Friend</div>
+                <ul class="nav-links">
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#about">About You</a></li>
+                    <li><a href="#memories">Memories</a></li>
+                    <li><a href="#messages">Messages</a></li>
+                </ul>
+                <a href="#footer" class="btn btn-nav">For You <i class="fa-solid fa-heart"></i></a>
+            </nav>
+
+            <div class="home-content">
+                <div class="home-text reveal">
+                    <h1 style="font-size: 3.8rem;">Happy Friendship Day,<br>Kowsi! 🌸</h1>
+                    <p style="font-style: italic; font-weight: bold; color: var(--accent-purple); font-size: 1.2rem; margin-bottom: 1rem;">"Life gave me many people, but only a few became unforgettable. You're one of them, Kowsi. 🌸"</p>
+                    <p>Thank you for every laugh, every random conversation, every memory, and every moment we've shared. Life became a little more colorful because you were part of it.</p>
+                    <a href="#about" class="btn btn-purple mt-2">Start the Journey</a>
+                </div>
+                <div class="home-image reveal reveal-delay-2">
+                    <div class="polaroid-large">
+                        <div class="tape"></div>
+                        <img src="assets/hero-friends.png" alt="Friends">
+                    </div>
+                    <i class="fa-regular fa-heart doodle-heart"></i>
+                    <i class="fa-regular fa-star doodle-star"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN 2: ABOUT YOU -->
+        <section id="about" class="screen screen-purple">
+            <a href="#home" class="back-link"><i class="fa-solid fa-chevron-left"></i> Back</a>
+            <div class="section-header reveal">
+                <h2>Things I Admire About You 💛</h2>
+                <p style="max-width: 600px; margin: 0 auto;">You have a kind heart, a beautiful smile, and an amazing way of making everyone feel comfortable. Your positivity, care, and genuine friendship are things I'll always cherish.<br><br>Thank you for simply being you.</p>
+            </div>
+            
+            <h3 class="reveal" style="text-align: center; font-family: var(--font-heading); font-size: 2.2rem; margin-top: 1rem; margin-bottom: 1.5rem; color: #333;">🌸 Little Things I Like About You</h3>
+            
+            <div class="cards-row" style="flex-wrap: wrap; max-width: 800px; margin: 0 auto; gap: 1.5rem;">
+                <div class="info-card reveal reveal-delay-1" style="width: 200px; padding: 1.5rem 1rem;">
+                    <div class="icon-circle icon-pink">❤️</div>
+                    <p>Your smile</p>
+                </div>
+                <div class="info-card reveal reveal-delay-2" style="width: 200px; padding: 1.5rem 1rem;">
+                    <div class="icon-circle icon-yellow">🌼</div>
+                    <p>Your caring nature</p>
+                </div>
+                <div class="info-card reveal reveal-delay-3" style="width: 200px; padding: 1.5rem 1rem;">
+                    <div class="icon-circle icon-purple">😂</div>
+                    <p>Your funny moments</p>
+                </div>
+                <div class="info-card reveal reveal-delay-4" style="width: 200px; padding: 1.5rem 1rem;">
+                    <div class="icon-circle icon-pink">🤝</div>
+                    <p>Always supportive</p>
+                </div>
+                <div class="info-card reveal reveal-delay-5" style="width: 200px; padding: 1.5rem 1rem;">
+                    <div class="icon-circle icon-yellow">✨</div>
+                    <p>💛 The Way You Stand Up for Yourself</p>
+                </div>
+                <div class="info-card reveal reveal-delay-6" style="width: 200px; padding: 1.5rem 1rem;">
+                    <div class="icon-circle icon-purple">🌈</div>
+                    <p>Our memories</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN 3: MEMORIES -->
+        <section id="memories" class="screen screen-pink">
+            <a href="#about" class="back-link"><i class="fa-solid fa-chevron-left"></i> Back</a>
+            
+            <!-- Decorations -->
+            <div class="deco-postit">
+                Good times<br>+ crazy friends<br>= best memories<br>
+                <i class="fa-regular fa-heart"></i>
+            </div>
+            
+            <div class="section-header reveal">
+                <h2>Smiles We'll Never Forget 💕</h2>
+                <p style="max-width: 600px; margin: 0 auto;">Every picture here tells a story. Some are funny. Some are unforgettable. Some remind me how lucky I am to have a friend like you. These moments will always have a special place in my heart.</p>
+                <div class="subtitle-divider">
+                    <hr><i class="fa-regular fa-heart"></i><hr>
+                </div>
+            </div>
+
+            <div class="memories-grid-new">
+                <div class="mem-polaroid reveal reveal-delay-1"><img src="assets/about-1.png" alt="Memory"></div>
+                <div class="mem-polaroid reveal reveal-delay-2"><img src="assets/about-2.png" alt="Memory"></div>
+                <div class="mem-polaroid reveal reveal-delay-3"><img src="assets/about-3.png" alt="Memory"></div>
+                <div class="mem-polaroid reveal reveal-delay-4"><img src="assets/mem-1.png" alt="Memory"></div>
+                <div class="mem-polaroid reveal reveal-delay-5"><img src="assets/mem-2.png" alt="Memory"></div>
+                <div class="mem-polaroid reveal reveal-delay-6"><img src="assets/mem-3.png" alt="Memory"></div>
+            </div>
+            
+            <div class="btn-wrapper mt-3">
+                <i class="fa-solid fa-minus dash-icon"></i>
+                <i class="fa-solid fa-minus dash-icon" style="transform: rotate(30deg)"></i>
+                <a href="#messages" class="btn btn-pink"><i class="fa-regular fa-image" style="margin-right: 8px;"></i> More Memories <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i></a>
+                <i class="fa-solid fa-minus dash-icon" style="transform: rotate(-30deg)"></i>
+                <i class="fa-solid fa-minus dash-icon"></i>
+            </div>
+        </section>
+
+        <!-- SCREEN 4: A LETTER FOR YOU -->
+        <section id="messages" class="screen screen-yellow" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: left;">
+            <a href="#memories" class="back-link"><i class="fa-solid fa-chevron-left"></i> Back</a>
+            
+            <div class="reveal" style="background: white; padding: 2rem 2.5rem; border-radius: 10px; max-width: 700px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); position: relative; margin-top: 0.5rem; width: 100%;">
+                <h2 style="font-family: var(--font-heading); font-size: 2.2rem; color: var(--accent-pink); margin-bottom: 1rem; text-align: center;">💌 A Letter for You</h2>
+                
+                <p style="font-size: 1.05rem; line-height: 1.6; color: #444; margin-bottom: 0.8rem;">Dear <strong>Kowsi</strong>,</p>
+                <p style="font-size: 1.05rem; line-height: 1.6; color: #444; margin-bottom: 0.8rem;">Happy Friendship Day!</p>
+                <p style="font-size: 1.05rem; line-height: 1.6; color: #444; margin-bottom: 0.8rem;">I just wanted to say thank you for being such a wonderful friend. Through all the fun moments, conversations, and memories, you've always made life a little happier.</p>
+                <p style="font-size: 1.05rem; line-height: 1.6; color: #444; margin-bottom: 0.8rem;">I truly appreciate your kindness, your support, and the happiness you bring wherever you go. Having a friend like you is something I'll always be grateful for, and I'm grateful that our paths crossed.</p>
+                <p style="font-size: 1.05rem; line-height: 1.6; color: #444; margin-bottom: 1rem;">Stay confident, keep smiling, and continue being the wonderful person you are.</p>
+                
+                <p style="font-size: 1.3rem; font-family: var(--font-heading); color: var(--accent-purple); text-align: right; margin-bottom: 0;">Happy Friendship Day once again! 💖</p>
+                
+                <!-- Surprise Section -->
+                <div style="background: #fff9e6; border-left: 4px solid var(--accent-yellow); padding: 1rem 1.2rem; margin-top: 1.5rem; border-radius: 4px;">
+                    <h3 style="font-family: var(--font-heading); font-size: 1.3rem; color: #333; margin-bottom: 0.3rem;">🎁 One Last Surprise...</h3>
+                    <p style="font-size: 0.9rem; color: #555; margin-bottom: 0;">I don't know what the future holds, but I'm really happy that life gave me a friend like<strong> you.</strong> Thank you for every smile, every laugh, and every unforgettable memory. 🌸 Happy Friendship Day, Kowsi! 🌸</p>
+                </div>
+            </div>
+            
+            <a href="#footer-sec" class="btn btn-yellow-solid" style="margin-top: 1.5rem;">See Final Message <i class="fa-solid fa-gift"></i></a>
+        </section>
+
+        <!-- SCREEN 5: FINAL -->
+        <footer id="footer-sec" class="screen screen-cream" style="justify-content: center; align-items: center; text-align: center; padding: 2rem;">
+            <div class="footer-arch">
+                <img src="assets/footer-bg.png" alt="Happy Picture">
+            </div>
+            <div class="footer-text-area" style="margin-top: 2rem;">
+                <p class="foot-msg" style="color: #444; font-size: 1.2rem; font-style: italic; font-weight: 600; font-family: 'Nunito', sans-serif;">Friendship is one of life's greatest gifts, and I'm grateful that I found it in <Strong>you</Strong></p>
+                <h3 style="font-family: var(--font-heading); color: var(--accent-pink); font-size: 2rem; margin-top: 1.5rem;">🌸 Thank you for being one of the best chapters of my life. 🌸</h3>
+                <button id="final-surprise-btn" class="btn btn-purple" style="margin-top: 2rem; font-size: 1.2rem;">One Last Surprise</button>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Audio Player -->
+    <audio id="bg-music" loop>
+        <source src="assets/song.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Floating Music Button -->
+    <button id="music-btn" class="music-btn" title="Play Music">
+        <i class="fa-solid fa-music"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
